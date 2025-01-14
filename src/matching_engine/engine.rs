@@ -1,4 +1,8 @@
-use super::orderbook::{Order, OrderBook};
+#![allow(dead_code)]
+use rust_decimal::Decimal;
+
+use super::orderbook::OrderBook;
+use super::types::order::OrderRecord;
 use std::collections::HashMap;
 use std::fmt::{Display, Formatter, Result as FmtResult};
 use std::result::Result;
@@ -45,12 +49,12 @@ impl MatchingEngine {
     pub fn place_limit_order(
         &mut self,
         pair: TradingPair,
-        price: f64,
-        order: Order,
+        price: Decimal,
+        order: OrderRecord,
     ) -> Result<(), String> {
         match self.orderbooks.get_mut(&pair) {
             Some(orderbook) => {
-                orderbook.add_order(price, order);
+                orderbook.add_limit_order(price, order);
                 println!("Placed market order at {}", price);
                 Ok(())
             }

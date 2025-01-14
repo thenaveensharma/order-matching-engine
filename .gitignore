@@ -23,3 +23,17 @@ Cargo.lock
 # Added by cargo
 
 /target
+
+# Environment
+.env
+
+# Docker volumes
+docker_trading_engine_data
+
+# Rust
+/target
+Cargo.lock
+
+# IDE
+.idea/
+.vscode/
